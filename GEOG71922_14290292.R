@@ -53,3 +53,24 @@ beetles <- beetles_joined %>%
 
 head(beetles)
 #names(beetles)
+
+
+beetles_xy <- data.frame(
+  X = beetles$X,
+  Y = beetles$Y
+)
+
+beetles_sp <- vect(
+  beetles_xy,
+  geom = c("X", "Y"),
+  crs = "EPSG:27700"
+)
+plot(beetles_sp)
+
+# Reproject LCM to EPSG:27700
+LCM<- project(LCM,crs(beetles_sp), method = "near")
+
+# Plot raster and overlay beetle points
+plot(LCM)
+points(beetles_sp, col = "red", pch = 20)
+
