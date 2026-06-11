@@ -161,3 +161,24 @@ range(beetles$urban_500, na.rm = TRUE)
 range(beetles$woodland_3000, na.rm = TRUE)
 range(beetles$urban_3000, na.rm = TRUE)
 
+#prepare beetles community matrix
+beetles_species <- beetles%>% select(sp1:sp22)
+
+#head(beetles_species)
+beetles_NMDS = metaMDS(beetles_species, k = 2, trymax = 100, distance = "bray")
+
+stressplot(beetles_NMDS)
+#plot(beetles_NMDS, display = "sites", type = "p")
+
+#Environmental variables for envfit
+env_500 <- beetles %>% select(pH,Moist,Litter, Bryophyte,CanopyHeight,Plants_m2,Elevation,Management,
+                              urban_500, woodland_500)
+
+env_3000 <- beetles %>% select(pH,Moist,Litter,Bryophyte,CanopyHeight,Plants_m2,Elevation,Management,
+                               woodland_3000,urban_3000)
+
+fit_500 = envfit(beetles_NMDS, env_500, perm= 9999)
+fit_3000 = envfit(beetles_NMDS, env_3000, perm= 9999)
+
+fit_500
+fit_3000
