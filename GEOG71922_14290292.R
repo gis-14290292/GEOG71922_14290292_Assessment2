@@ -328,3 +328,14 @@ RsquareAdj(beetles_rda_3000)
 # Check multicollinearity
 vif.cca(beetles_rda_3000)
 
+
+r2_500 <- RsquareAdj(beetles_rda_500)
+r2_3000 <- RsquareAdj(beetles_rda_3000)
+
+rda_compare <- data.frame(
+  Model = c("500 m land-cover model", "3000 m land-cover model"),
+  R2 = c(r2_500$r.squared, r2_3000$r.squared),
+  Adjusted_R2 = c(r2_500$adj.r.squared, r2_3000$adj.r.squared)
+)
+
+rda_compare
