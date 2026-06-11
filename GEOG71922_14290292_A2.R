@@ -262,6 +262,23 @@ legend(
   cex = 0.8
 )
 
+# Overall model significance
+anova(beetles_rda_3000, permutations = 999)
+
+# Significance of individual predictors
+anova(beetles_rda_3000, by = "term", permutations = 999)
+
+# Significance of constrained axes
+anova(beetles_rda_3000, by = "axis", permutations = 999)
+
+# Adjusted R-squared
+RsquareAdj(beetles_rda_3000)
+
+# Check multicollinearity
+vif.cca(beetles_rda_3000)
+
+
+
 sumRda_500$cont$importance[2, "RDA2"]
 
 #set up ordination space
