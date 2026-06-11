@@ -227,6 +227,41 @@ sumRda_3000 <- summary(beetles_rda_3000)
 # Explanatory power of the first two RDA axes
 sumRda_3000$cont$importance[2, "RDA1"]
 sumRda_3000$cont$importance[2, "RDA2"]
+
+plot(beetles_rda_3000, type = "n", scaling = 3)
+
+# Add sites
+points(beetles_rda_3000,display = "sites",scaling = 3,pch = 21,cex = 1.5,col = "black",bg = colvec[as.character(beetles$Management_group)])
+
+# Add environmental arrows from RDA model
+bp_3000 <- scores(beetles_rda_3000, display = "bp", scaling = 3)
+
+arrows(
+  0, 0,
+  bp_3000[, 1], bp_3000[, 2],
+  length = 0.08,
+  col = "black"
+)
+
+text(
+  bp_3000[, 1], bp_3000[, 2],
+  labels = rownames(bp_3000),
+  col = "black",
+  cex = 0.8,
+  pos = 4
+)
+
+# Add legend
+legend(
+  "bottomright",
+  legend = levels(as.factor(beetles$Management_group)),
+  pt.bg = colvec,
+  col = "black",
+  pch = 21,
+  bty = "n",
+  cex = 0.8
+)
+
 sumRda_500$cont$importance[2, "RDA2"]
 
 #set up ordination space
