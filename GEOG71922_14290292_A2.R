@@ -27,3 +27,25 @@ head(beetles_env)
 
 #Plot land cover raster
 plot(LCM)
+
+#join two cvs.file by sites number
+names(beetles_comm) <- make.names(names(beetles_comm))
+names(beetles_env) <- make.names(names(beetles_env))
+
+# Check the shared site column
+names(beetles_comm)
+names(beetles_env)
+
+# Join community data and environmental data by Sites
+beetles_joined <- beetles_env %>%
+  inner_join(beetles_comm, by = "Sites")
+
+#head(beetles_joined)
+
+#remove unseless columns
+beetles <- beetles_joined %>%
+  select(-X.1, -X.y) %>%
+  rename(X = X.x)
+
+head(beetles)
+#names(beetles)
