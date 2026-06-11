@@ -190,3 +190,18 @@ fit_3000 = envfit(beetles_NMDS, env_3000, perm= 9999)
 
 fit_500
 fit_3000
+
+
+beetles$Management_group <- cut(as.numeric(beetles$Management),breaks = 3,include.lowest = TRUE,
+                                labels = c("Low management", "Medium management", "High management"))
+
+
+
+# add sites, coloured by management group
+# Set colours
+colvec <- c(
+  "Low management" = "darkgreen",
+  "Medium management" = "orange",
+  "High management" = "red"
+)
+
