@@ -264,3 +264,16 @@ RsquareAdj(beetles_rda_500)
 # Check multicollinearity
 vif.cca(beetles_rda_500)
 
+beetles_rda_3000 <- rda(
+  beetles_hell ~ pH + Moist + Litter + Bryophyte + CanopyHeight +
+    Plants_m2 + Elevation + Management + woodland_3000 + urban_3000,
+  data = beetles
+)
+
+# Summarise the 3000 m model
+sumRda_3000 <- summary(beetles_rda_3000)
+
+# Explanatory power of the first two RDA axes
+sumRda_3000$cont$importance[2, "RDA1"]
+sumRda_3000$cont$importance[2, "RDA2"]
+
