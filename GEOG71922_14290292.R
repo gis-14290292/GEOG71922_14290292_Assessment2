@@ -248,5 +248,19 @@ points(beetles_rda_500, display = "species", pch = 3, cex = 2, col = "black")
 text(beetles_rda_500, display = "species", col = "blue", cex = 0.7,pos=1,offset=-1.5)
 
 
+# Additional model evaluation for A2
+# Overall model significance
+anova(beetles_rda_500, permutations = 999)
 
+# Significance of individual predictors
+anova(beetles_rda_500, by = "term", permutations = 999)
+
+# Significance of constrained axes
+anova(beetles_rda_500, by = "axis", permutations = 999)
+
+# Adjusted R-squared
+RsquareAdj(beetles_rda_500)
+
+# Check multicollinearity
+vif.cca(beetles_rda_500)
 
