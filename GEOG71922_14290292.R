@@ -205,3 +205,11 @@ colvec <- c(
   "High management" = "red"
 )
 
+plot(beetles_NMDS, display = "sites", type = "p")
+
+plot( fit_500, add = TRUE, col = "black",cex=0.7)
+points(beetles_NMDS, display = "sites", col = colvec[as.factor(beetles$Management_group)],cex=1.8,
+       scaling = 3, pch = 21)
+# add legend
+legend("bottomright",legend = levels(as.factor(beetles$Management_group)),pt.bg = colvec,col = colvec,
+       pch = 21,bty = "n")
