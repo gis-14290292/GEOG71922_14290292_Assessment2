@@ -204,3 +204,14 @@ points(beetles_NMDS, display = "sites", col = colvec[as.factor(beetles$Managemen
 # add legend
 legend("bottomright",legend = levels(as.factor(beetles$Management_group)),pt.bg = colvec,col = colvec,
        pch = 21,bty = "n")
+
+beetles_hell <- decostand(beetles_species,method = "hellinger")
+beetles_rda_500 = rda(beetles_hell ~ pH + Moist + Litter + Bryophyte + CanopyHeight +
+                        Plants_m2 + Elevation + Management +woodland_500 + urban_500, data = beetles)
+
+# Summarise the model
+sumRda_500=summary(beetles_rda_500)
+
+# Explanatory power of the first two RDA axes
+sumRda_500$cont$importance[2, "RDA1"]
+sumRda_500$cont$importance[2, "RDA2"]
