@@ -215,3 +215,21 @@ sumRda_500=summary(beetles_rda_500)
 # Explanatory power of the first two RDA axes
 sumRda_500$cont$importance[2, "RDA1"]
 sumRda_500$cont$importance[2, "RDA2"]
+
+#set up ordination space
+plot(beetles_rda_500, type = "n", scaling = 3)
+
+plot(fit_500, add = TRUE, col = "black",cex=0.7)
+
+#add sites
+points(beetles_rda_500, display = "sites", col = "black",cex=1.8,
+       scaling = 3, pch = 21, bg = colvec[beetles$Management_group])
+
+
+#add legend
+with(beetles, legend("bottomright", legend = levels(as.factor(beetles$Management_group)), bty = "n",
+                     col = colvec, pch = 21,cex=0.8, pt.bg = colvec))
+#add species
+points(beetles_rda_500, display = "species", pch = 3, cex = 2, col = "black")
+#add species names
+text(beetles_rda_500, display = "species", col = "blue", cex = 0.7,pos=1,offset=-1.5)
